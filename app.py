@@ -4,11 +4,16 @@ from flask_session import Session
 from functools import wraps
 from cs50 import SQL
 from werkzeug.security import check_password_hash, generate_password_hash
+import psycopg2
+
+DATABSE_URL = "postgres://kdwwsivrbhavjf:d3e7832a1ba7ee6055e00c9300f913227bdae6f398316babbf53f19ad2590486@ec2-44-208-88-195.compute-1.amazonaws.com:5432/d86u2pacceck0q"
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
+cur = conn.cursor()
+
 
 app = Flask(__name__)
-
-
-db = SQL("sqlite:///login.db")
 
 
 app.config["SESSION_PERMANENT"] = False
@@ -48,10 +53,10 @@ def login():
         if not request.form.get("psw"):
             return render_template("login.html", invalid=2)
         username = request.form.get("uname")
-        login = db.execute("SELECT hash FROM login WHERE username = ?", username)
+        login = cur.execute("SELECT hash FROM login WHERE username = ?", username)
         if login == None or not check_password_hash(login[0]["hash"], request.form.get("psw")):
             return render_template("login.html", invalid=3)
-        user_id = db.execute("SELECT id FROM login WHERE username = ?", username)
+        user_id = cur.execute("SELECT id FROM login WHERE username = ?", username)
         session["user_id"] = user_id[0]["id"]
         return redirect("/")
 
@@ -88,11 +93,11 @@ def register():
         username = request.form.get("username")
         pass_one = request.form.get("psw")
         pass_two = request.form.get("psw-repeat")
-        usernames = db.execute("SELECT username FROM login")
+        usernames = cur.execute("SELECT username FROM login")
         if username in usernames:
             return render_template("register.html", invalid=1)
         if pass_one != pass_two:
             return render_template("register.html", invalid=2)
         hashed_pass = generate_password_hash(pass_one)
-        db.execute("INSERT INTO login (username, hash) VALUES (?, ?)", username, hashed_pass)
+     cur.execute("INSERT INTO login (username, hash) VALUES (?, ?)", username, hashed_pass)
         return render_template("login.html")
