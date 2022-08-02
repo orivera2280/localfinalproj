@@ -53,11 +53,11 @@ def login():
         if not request.form.get("psw"):
             return render_template("login.html", invalid=2)
         username = request.form.get("uname")
-        cur.execute("SELECT hash FROM login WHERE username = ?", username)
+        cur.execute("SELECT hash FROM login WHERE username = %s", (username,))
         login = cur.fetchone()
         if login == None or not check_password_hash(login[0]["hash"], request.form.get("psw")):
             return render_template("login.html", invalid=3)
-        cur.execute("SELECT id FROM login WHERE username = ?", username)
+        cur.execute("SELECT id FROM login WHERE username = %s", (username,))
         user_id = cur.fetchone()
         session["user_id"] = user_id[0]["id"]
         return redirect("/")
