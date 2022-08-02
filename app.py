@@ -62,14 +62,6 @@ def index():
         return render_template("index.html")
 
 
-@app.route("/campus.html", methods=["GET", "POST"])
-@login_required
-def campus():
-    if request.method == "GET":
-        table = db.execute("SELECT * FROM oncampus")
-        return render_template("campus.html", table=table)
-
-
 @app.route("/outside.html", methods=["GET", "POST"])
 @login_required
 def outside():
