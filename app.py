@@ -6,7 +6,7 @@ from cs50 import SQL
 from werkzeug.security import check_password_hash, generate_password_hash
 import psycopg2
 
-DATABSE_URL = "postgres://kdwwsivrbhavjf:d3e7832a1ba7ee6055e00c9300f913227bdae6f398316babbf53f19ad2590486@ec2-44-208-88-195.compute-1.amazonaws.com:5432/d86u2pacceck0q"
+DATABASE_URL = "postgres://kdwwsivrbhavjf:d3e7832a1ba7ee6055e00c9300f913227bdae6f398316babbf53f19ad2590486@ec2-44-208-88-195.compute-1.amazonaws.com:5432/d86u2pacceck0q"
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
