@@ -55,7 +55,7 @@ def login():
         username = request.form.get("uname")
         cur.execute("SELECT hash FROM login WHERE username = %s", (username,))
         login = cur.fetchone()
-        if login is None or not check_password_hash(login["hash"], request.form.get("psw")):
+        if login is None or not check_password_hash(login[0], request.form.get("psw")):
             return render_template("login.html", invalid=3)
         cur.execute("SELECT id FROM login WHERE username = %s", (username,))
         user_id = cur.fetchone()
