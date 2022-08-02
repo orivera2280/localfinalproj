@@ -62,11 +62,22 @@ def index():
         return render_template("index.html")
 
 
-@app.route("/outside.html", methods=["GET", "POST"])
+@app.route("/midtown.html", methods=["GET", "POST"])
 @login_required
-def outside():
-    if request.method == "GET":
-        return render_template("outside.html")
+def midtown():
+    return render_template("midtown.html")
+
+
+@app.route("/buckhead.html", methods=["GET", "POST"])
+@login_required
+def buckhead():
+    return render_template("buckhead.html", methods=["GET", "POST"])
+
+
+@app.route("/thepark.html")
+@login_required
+def thepark():
+    return render_template("thepark.html", methods=["GET", "POST"])
 
 
 @app.route("/register.html", methods=["GET", "POST"])
