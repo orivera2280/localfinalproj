@@ -59,7 +59,7 @@ def login():
             return render_template("login.html", invalid=3)
         cur.execute("SELECT id FROM login WHERE username = %s", (username,))
         user_id = cur.fetchone()
-        session["user_id"] = user_id[0]["id"]
+        session["user_id"] = user_id[0]
         return redirect("/")
 
 
