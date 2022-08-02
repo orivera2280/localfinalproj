@@ -94,7 +94,7 @@ def register():
         pass_one = request.form.get("psw")
         pass_two = request.form.get("psw-repeat")
         usernames = cur.execute("SELECT username FROM login")
-        if username == usernames[0]["username"]:
+        if usernames is not None:
             return render_template("register.html", invalid=1)
         if pass_one != pass_two:
             return render_template("register.html", invalid=2)
