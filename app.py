@@ -90,7 +90,7 @@ def register():
     if request.method == "GET":
         return render_template("register.html", invalid=0)
     if request.method == "POST":
-        username = request.form.get("username")
+        username = str(request.form.get("username"))
         pass_one = request.form.get("psw")
         pass_two = request.form.get("psw-repeat")
         cur.execute("SELECT username FROM login WHERE username = %s", (username))
