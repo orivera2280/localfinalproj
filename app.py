@@ -99,5 +99,5 @@ def register():
         if pass_one != pass_two:
             return render_template("register.html", invalid=2)
         hashed_pass = generate_password_hash(pass_one)
-        cur.execute("INSERT INTO login (username, hash) VALUES (?, ?)", username, hashed_pass)
+        cur.execute("INSERT INTO login (username, hash) VALUES (?, ?)", (username, hashed_pass))
         return render_template("login.html")
