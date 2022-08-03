@@ -104,7 +104,7 @@ def thepark():
         if request.form.get("GrabNGo") is not None:
             message = Message("You signed up for Grab N Go @ 2514 W Point Ave, ATL 30337 (6:30-8:30 PM)", recipients=[email])
             mail.send(message)
-            message = Message("%s signed up for Grab N Go @ 2514 W Point Ave, ATL 30337 (6:30-8:30 PM)", (email,), recipients=["24orivera@woodward.edu"])
+            message = Message("%s signed up for Grab N Go @ 2514 W Point Ave, ATL 30337 (6:30-8:30 PM)", email, recipients=["24orivera@woodward.edu"])
             mail.send(message)
             return render_template("index.html")
 
@@ -125,4 +125,6 @@ def register():
             return render_template("register.html", invalid=2)
         hashed_pass = generate_password_hash(pass_one)
         cur.execute("INSERT INTO login (username, hash) VALUES (%s, %s)", (username, hashed_pass,))
+        conn.commit()
+        conn.close()
         return render_template("login.html")
