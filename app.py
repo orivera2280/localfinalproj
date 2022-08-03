@@ -53,7 +53,8 @@ def login():
         if not request.form.get("psw"):
             return render_template("login.html", invalid=2)
         username = request.form.get("uname")
-        email=request.form.get("uname")
+        global email
+        email = request.form.get("uname")
         cur.execute("SELECT hash FROM login WHERE username = %s", (username,))
         login = cur.fetchone()
         if login is None or not check_password_hash(login[0], request.form.get("psw")):
