@@ -53,6 +53,7 @@ def login():
         if not request.form.get("psw"):
             return render_template("login.html", invalid=2)
         username = request.form.get("uname")
+        email=request.form.get("uname")
         cur.execute("SELECT hash FROM login WHERE username = %s", (username,))
         login = cur.fetchone()
         if login is None or not check_password_hash(login[0], request.form.get("psw")):
@@ -72,19 +73,19 @@ def index():
 @app.route("/midtown.html", methods=["GET", "POST"])
 @login_required
 def midtown():
-    return render_template("midtown.html")
+    return render_template("midtown.html", email=email)
 
 
 @app.route("/buckhead.html", methods=["GET", "POST"])
 @login_required
 def buckhead():
-    return render_template("buckhead.html", methods=["GET", "POST"])
+    return render_template("buckhead.html", email=email)
 
 
 @app.route("/thepark.html")
 @login_required
 def thepark():
-    return render_template("thepark.html", methods=["GET", "POST"])
+    return render_template("thepark.html", email=email)
 
 
 @app.route("/register.html", methods=["GET", "POST"])
