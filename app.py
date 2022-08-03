@@ -17,17 +17,6 @@ cur = conn.cursor()
 app = Flask(__name__)
 
 
-# Requires that "Less secure app access" be on
-# https://support.google.com/accounts/answer/6010255
-app.config["MAIL_DEFAULT_SENDER"] = "GetConnectedWA@gmail.com"
-app.config["MAIL_PASSWORD"] = "TemporaryFox338899"
-app.config["MAIL_PORT"] = 587
-app.config["MAIL_SERVER"] = "smtp.gmail.com"
-app.config["MAIL_USE_TLS"] = True
-app.config["MAIL_USERNAME"] = "Oscar Rivera"
-mail = Mail(app)
-
-
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
@@ -98,15 +87,7 @@ def buckhead():
 @app.route("/thepark.html", methods=["GET", "POST"])
 @login_required
 def thepark():
-    if request.method == "GET":
-        return render_template("thepark.html")
-    if request.method == "POST":
-        if request.form.get("GrabNGo") is not None:
-            message = Message("You signed up for Grab N Go @ 2514 W Point Ave, ATL 30337 (6:30-8:30 PM)", recipients=[email])
-            mail.send(message)
-            message = Message("%s signed up for Grab N Go @ 2514 W Point Ave, ATL 30337 (6:30-8:30 PM)", email, recipients=["24orivera@woodward.edu"])
-            mail.send(message)
-            return render_template("thepark.html")
+    return render_template("thepark.html")
 
 
 @app.route("/register.html", methods=["GET", "POST"])
