@@ -5,6 +5,7 @@ from functools import wraps
 from cs50 import SQL
 from werkzeug.security import check_password_hash, generate_password_hash
 import psycopg2
+from flask_mail import Mail, Message
 
 DATABASE_URL = "postgres://kdwwsivrbhavjf:d3e7832a1ba7ee6055e00c9300f913227bdae6f398316babbf53f19ad2590486@ec2-44-208-88-195.compute-1.amazonaws.com:5432/d86u2pacceck0q"
 
@@ -14,6 +15,17 @@ cur = conn.cursor()
 
 
 app = Flask(__name__)
+
+
+# Requires that "Less secure app access" be on
+# https://support.google.com/accounts/answer/6010255
+app.config["MAIL_DEFAULT_SENDER"] = os.environ["MAIL_DEFAULT_SENDER"]
+app.config["MAIL_PASSWORD"] = os.environ["MAIL_PASSWORD"]
+app.config["MAIL_PORT"] = 587
+app.config["MAIL_SERVER"] = "smtp.gmail.com"
+app.config["MAIL_USE_TLS"] = True
+app.config["MAIL_USERNAME"] = os.environ["MAIL_USERNAME"]
+mail = Mail(app)
 
 
 app.config["SESSION_PERMANENT"] = False
@@ -68,25 +80,33 @@ def login():
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
-        return render_template("index.html")
+    return render_template("index.html")
 
 
 @app.route("/midtown.html", methods=["GET", "POST"])
 @login_required
 def midtown():
-    return render_template("midtown.html", email=email)
+    return render_template("midtown.html")
 
 
 @app.route("/buckhead.html", methods=["GET", "POST"])
 @login_required
 def buckhead():
-    return render_template("buckhead.html", email=email)
+    return render_template("buckhead.html")
 
 
-@app.route("/thepark.html")
+@app.route("/thepark.html", methods=["GET", "POST"])
 @login_required
 def thepark():
-    return render_template("thepark.html", email=email)
+    if request.method == "GET":
+        return render_template("thepark.html")
+    if request.method == "POST":
+        if request.form.get("GrabNGo") is not None:
+            message = Message("You signed up for Grab N Go @ 2514 W Point Ave, ATL 30337 (6:30-8:30 PM)", recipients=[email])
+            mail.send(message)
+            message = Message("%s signed up for Grab N Go @ 2514 W Point Ave, ATL 30337 (6:30-8:30 PM)", (email,), recipients=["24orivera@woodward.edu"])
+            mail.send(message)
+            return render_template("index.html")
 
 
 @app.route("/register.html", methods=["GET", "POST"])
