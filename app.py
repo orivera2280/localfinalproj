@@ -80,7 +80,7 @@ def login():
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
-    return render_template("index.html")
+    return render_template("thepark.html")
 
 
 @app.route("/midtown.html", methods=["GET", "POST"])
