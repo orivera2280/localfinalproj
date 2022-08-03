@@ -106,7 +106,7 @@ def thepark():
             mail.send(message)
             message = Message("%s signed up for Grab N Go @ 2514 W Point Ave, ATL 30337 (6:30-8:30 PM)", email, recipients=["24orivera@woodward.edu"])
             mail.send(message)
-            return render_template("index.html")
+            return render_template("thepark.html")
 
 
 @app.route("/register.html", methods=["GET", "POST"])
