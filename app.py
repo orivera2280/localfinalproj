@@ -19,12 +19,12 @@ app = Flask(__name__)
 
 # Requires that "Less secure app access" be on
 # https://support.google.com/accounts/answer/6010255
-app.config["MAIL_DEFAULT_SENDER"] = os.environ["MAIL_DEFAULT_SENDER"]
-app.config["MAIL_PASSWORD"] = os.environ["MAIL_PASSWORD"]
+app.config["MAIL_DEFAULT_SENDER"] = "GetConnectedWA@gmail.com"
+app.config["MAIL_PASSWORD"] = "TemporaryFox338899"
 app.config["MAIL_PORT"] = 587
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_USE_TLS"] = True
-app.config["MAIL_USERNAME"] = os.environ["MAIL_USERNAME"]
+app.config["MAIL_USERNAME"] = "Oscar Rivera"
 mail = Mail(app)
 
 
