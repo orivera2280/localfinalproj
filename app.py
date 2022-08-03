@@ -126,5 +126,4 @@ def register():
         hashed_pass = generate_password_hash(pass_one)
         cur.execute("INSERT INTO login (username, hash) VALUES (%s, %s)", (username, hashed_pass,))
         conn.commit()
-        conn.close()
         return render_template("login.html")
