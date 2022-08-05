@@ -47,6 +47,16 @@
                 Incorrect login information
               </div>
               {% endif %}
+              {% if invalid == 1 %}
+              <div class="alert alert-danger" role="alert">
+                Fields cannot be left blank
+              </div>
+              {% endif %}
+              {% if invalid == 2 %}
+              <div class="alert alert-danger" role="alert">
+                Fields cannot be left blank
+              </div>
+              {% endif %}
             </div>
           </div>
         </div>
