@@ -97,7 +97,7 @@ def register():
     if request.method == "POST":
         username = request.form.get("user")
         pass_one = request.form.get("psw")
-        pass_two = request.form.get("rpt psw")
+        pass_two = request.form.get("rptpsw")
         cur.execute("SELECT username FROM login WHERE username = %s", (username,))
         usernames = cur.fetchone()
         if usernames is not None:
