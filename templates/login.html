@@ -36,12 +36,17 @@
                   <button type="submit"
                       class="btn btn-primary btn-block btn-lg text-body">Login</button>
                 </div>
-                
+
                 <div class="d-flex justify-content-center">
                   <a href="register.html">Register</a>
                 </div>
               </form>
-
+              <br>
+              {% if invalid == 3 %}
+              <div class="alert alert-danger" role="alert">
+                Incorrect login information
+              </div>
+              {% endif %}
             </div>
           </div>
         </div>

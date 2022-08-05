@@ -101,9 +101,11 @@ def register():
         cur.execute("SELECT username FROM login WHERE username = %s", (username,))
         usernames = cur.fetchone()
         if usernames is not None:
-            return render_template("register.html", invalid=1)
+            invalid = 1
+            return render_template("register.html", invalid=invalid)
         if pass_one != pass_two:
-            return render_template("register.html", invalid=2)
+            invalid = 2
+            return render_template("register.html", invalid=invalid)
         hashed_pass = generate_password_hash(pass_one)
         cur.execute("INSERT INTO login (username, hash) VALUES (%s, %s)", (username, hashed_pass,))
         conn.commit()
