@@ -23,7 +23,6 @@ body {
   background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
   }
 
-html {
-  font-family: Verdana;
-  color: green;
+* {
+  font-family: Verdana !important;
 }
