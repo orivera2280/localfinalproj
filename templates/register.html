@@ -42,6 +42,11 @@
                   class="btn btn-primary btn-block btn-lg text-body">Register</button>
               </div>
             </form>
+            {% if invalid == 1 %}
+            <div class="alert alert-danger" role="alert">
+              Account exists with this email
+            </div>
+            {% end if %}
 
             </div>
           </div>
