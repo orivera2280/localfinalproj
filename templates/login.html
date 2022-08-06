@@ -43,16 +43,19 @@
                 </div>
               </form>
               <br>
+              <!-- Uses passed in argument to alert user they used incorrect login information -->
               {% if invalid == 3 %}
               <div class="alert alert-danger" role="alert">
                 Incorrect login information
               </div>
               {% endif %}
+              <!-- Uses passed in argument to alert user they left one or more fields blank -->
               {% if invalid == 1 %}
               <div class="alert alert-danger" role="alert">
                 Fields cannot be left blank
               </div>
               {% endif %}
+              <!-- Uses passed in argument to alert user they left one or more fields blank -->
               {% if invalid == 2 %}
               <div class="alert alert-danger" role="alert">
                 Fields cannot be left blank

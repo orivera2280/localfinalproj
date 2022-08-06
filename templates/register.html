@@ -44,11 +44,13 @@
               </div>
             </form>
             <br>
+            <!-- Uses passed in argument to alert user they have an account already -->
             {% if invalid == 1 %}
             <div class="alert alert-danger" role="alert">
               Account exists with this email
             </div>
             {% endif %}
+            <!-- Uses passed in argument to alert user the entered passwords do not match -->
             {% if invalid == 2 %}
             <div class="alert alert-danger" role="alert">
               Passwords don't match
