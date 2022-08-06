@@ -1,7 +1,11 @@
+/* Stylesheet */
+
+/* Makes background of all pages a specific picture */
 body {
   background-image: url("https://cdn.shoplightspeed.com/shops/634448/files/32382901/woodward-academy-campus-photo-short.jpg");
 }
 
+/* CSS from https://mdbootstrap.com/docs/standard/extended/registration/ to help me set up my login and register page */
 .gradient-custom-3 {
   /* fallback for old browsers */
   background: #84fab0;
@@ -23,10 +27,12 @@ body {
   background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
   }
 
+/* Sets font for all text */
 * {
   font-family: Verdana !important;
 }
 
+/* Solves problems with buttons being white */
 button {
   background-color: #0d6efd !important;
 }
