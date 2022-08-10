@@ -8,7 +8,7 @@ import psycopg2
 from flask_mail import Mail, Message
 
 # Connecting my PostgresSQL table so users can register and login
-conn = psycopg2.connect(database="d86u2pacceck0q", user="kdwwsivrbhavjf", password="d3e7832a1ba7ee6055e00c9300f913227bdae6f398316babbf53f19ad2590486", host="ec2-44-208-88-195.compute-1.amazonaws.com", port="5432")
+conn = psycopg2.connect(database="d86u2pacceck0q", user="kdwwsivrbhavjf", password="d3e7832a1ba7ee6055e00c9300f913227bdae6f398316babbf53f19ad2590486", host="ec2-44-208-88-195.compute-1.amazonaws.com")
 cur = conn.cursor()
 
 
