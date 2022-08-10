@@ -8,4 +8,4 @@ flask_session==0.4.0
 CS50==9.2.2
 Werkzeug==2.1.2
 flask_mail==0.9.1
-psycopg2==2.9.3
+psycopg2-binary==2.9.3
