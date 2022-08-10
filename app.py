@@ -11,7 +11,7 @@ from flask_mail import Mail, Message
 DATABASE_URL = "postgres://kdwwsivrbhavjf:d3e7832a1ba7ee6055e00c9300f913227bdae6f398316babbf53f19ad2590486@ec2-44-208-88-195.compute-1.amazonaws.com:5432/d86u2pacceck0q"
 
 # Connection and cursor to allow me to run SQL queries in my app.py
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+conn = psycopg2.connect(database="d86u2pacceck0q", user="kdwwsivrbhavjf", password="d3e7832a1ba7ee6055e00c9300f913227bdae6f398316babbf53f19ad2590486", host="ec2-44-208-88-195.compute-1.amazonaws.com", port="5432")
 cur = conn.cursor()
 
 
