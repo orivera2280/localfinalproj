@@ -80,6 +80,11 @@ def index():
 def midtown():
     return render_template("midtown.html")
 
+@app.route("/marietta.html", methods=["GET", "POST"])
+@login_required
+def midtown():
+    return render_template("marietta.html")
+
 # Page made for when my app scales up -- I will make more pages that include service opportunities in specific areas 
 @app.route("/buckhead.html", methods=["GET", "POST"])
 @login_required
